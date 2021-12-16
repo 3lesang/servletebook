@@ -1,8 +1,5 @@
 package com.mycompany.model;
 
-
-
-
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,13 +15,11 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-
-
 @Entity
 @Table(name="books")
 public class Book implements Serializable {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String title;
 	private String img;
@@ -96,26 +91,26 @@ public class Book implements Serializable {
 	}
         
     public String getAuthor() {
-        return author;
-    }
+            return author;
+        }
 
     public void setAuthor(String author) {
-        this.author = author;
-    }
-
+            this.author = author;
+        }
+	
     public void setImg(String img) {
-        this.img = img;
-    }
+            this.img = img;
+        }
 
     public void setDetail(String detail) {
-        this.detail = detail;
-    }
+            this.detail = detail;
+        }
 
     public String getImg() {
-        return img;
-    }
+            return img;
+        }
 
     public String getDetail() {
-        return detail;
-    }
+            return detail;
+        }
 }
