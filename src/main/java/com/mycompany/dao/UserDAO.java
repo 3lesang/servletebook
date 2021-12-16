@@ -1,5 +1,6 @@
 package com.mycompany.dao;
 
+import com.mycompany.model.Book;
 import com.mycompany.model.User;
 import com.mycompany.util.HibernateUtil;
 import java.util.List;
@@ -9,20 +10,37 @@ import org.hibernate.Transaction;
 
 public class UserDAO {
     
-    public List<User> getUsers(){
+    public List<User> getAllUsers(){
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<User> users = null;
         try {
-                users = session.createQuery("FROM User").list();
+            Query q = session.createQuery("FROM User");
+            List<User> users = q.getResultList();
+            return users;
 
         } catch (Exception e) {
-                System.out.println(e);
+            System.out.println(e);
         } finally{
-                session.close();
+            session.close();
         }
-        return users;
+        return null;
     }
-    public User getUserById(String username){
+    public User getUserById(int id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Query q = session.createQuery("FROM User u Where u.id=:id");
+            q.setParameter("id", id);
+            User user = (User)q.getSingleResult();
+            return user;
+
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally{
+            session.close();
+        }
+        return null;
+    }
+
+    public User getUserByUsername(String username){
         Session session = HibernateUtil.getSessionFactory().openSession();
         User user = null;
         try {
@@ -42,7 +60,7 @@ public class UserDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         String username = newUser.getUsername();
-        User u = this.getUserById(username);
+        User u = this.getUserByUsername(username);
         if(u == null) {
             try {
                 tx = session.beginTransaction();
@@ -58,6 +76,25 @@ public class UserDAO {
         }
         return false;
     }
+
+    public boolean deleteUser(int id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            Query q = session.createQuery("DELETE User u Where u.id=:id");
+            tx = session.beginTransaction();
+            q.setParameter("id", id);
+            q.executeUpdate();
+            tx.commit();
+            return true;
+        } catch(Exception e){
+            e.printStackTrace();  
+        } finally {
+            session.close();
+        }  
+        return false;
+    }
+    
     public User login(String username, String pw) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         User user = null;
