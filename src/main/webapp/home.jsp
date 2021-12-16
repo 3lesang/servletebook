@@ -1,9 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
-
+    <%-- <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,14 +13,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet"> 
-    <title>trang chủ</title>
+    <title>Trang chủ</title>
 </head>
+
 <body class="grid-layout">
     <div class="header">
-        <a href="home" class="logo">book</a>
+        <a href="home" class="logo">BOOK</a>
         <form class="form-search" action="" method="GET">
           <input class="search-input" type="search" placeholder="tìm kiếm..." name="b" />
-          <button class="btn" type="submit">tìm kiếm</button>
+          <button class="btn" type="submit">Tìm kiếm</button>
         </form>
         <span class="header-right">
             <c:choose>
@@ -30,8 +32,9 @@
                     <div class="dropdown">
 					  <button onclick="myFunction()" class="dropbtn">${sessionScope.userInfo.getFullname()} &#128100;</button>
 					  <div id="myDropdown" class="dropdown-content">
-					    <a href="dashboard">quản lý</a>
-					    <a href="logout">đăng xuất</a>
+					    <a href="dashboard">Quản lý</a>
+					    <a href="logout">Đăng xuất</a>
+					    <a href="admin">Admin</a>
 					  </div>
 					</div>
                 </c:otherwise>
@@ -44,12 +47,12 @@
       </div>
       <div class="sidebar bg">
         <ul class="nav-sidebar">
-          <li class="nav-sidebar-item"><a href="home">trang chủ</a></li>
-          <li class="nav-sidebar-item"><a href="home?b=new">mới nhất </a></li>
-          <li class="nav-sidebar-item"><a href="home?b=trending">thịnh hành </a></li>
-          <li class="nav-sidebar-item"><a href="home?b=best">hay nhất</a></li>
+          <li class="nav-sidebar-item"><a href="home">Trang chủ</a></li>
+          <li class="nav-sidebar-item"><a href="home?b=new">Mới nhất </a></li>
+          <li class="nav-sidebar-item"><a href="home?b=trending">Thịnh hành </a></li>
+          <li class="nav-sidebar-item"><a href="home?b=best">Hay nhất</a></li>
         </ul>
-        <ul class="nav-sidebar">theo dõi</ul>
+        <ul class="nav-sidebar">Theo dõi</ul>
       </div>
       <main class="content" >
       	<c:if test="${requestScope.books.size() == 0}"> 
@@ -74,7 +77,6 @@
                     </div>
                 </div>
           </c:forEach>
-             
       </main>
      <script src="js/home.js"></script>
 </body>
