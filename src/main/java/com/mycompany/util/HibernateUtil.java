@@ -24,7 +24,7 @@ public class HibernateUtil {
         settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
         settings.put(Environment.URL, "jdbc:mysql://127.0.0.1:3306/ebook");
         settings.put(Environment.USER, "sang");
-        settings.put(Environment.PASS, "msang2403");
+        settings.put(Environment.PASS, "Msang113114115@");
         settings.put(Environment.SHOW_SQL, "true");
         configuration.setProperties(settings);
         configuration.addAnnotatedClass(User.class);

@@ -1,4 +1,4 @@
-
+const followBtn = document.getElementsByClassName('follow-btn');
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
@@ -14,4 +14,22 @@ window.onclick = function(event) {
       }
     }
   }
-} 
+}
+
+Array.from(followBtn).forEach((item) => {
+	const userid = item.dataset.user;
+	const bookid = item.dataset.book;
+	item.addEventListener('click', (e) => {
+		e.preventDefault();
+		
+		const url = document.location + `/follow`;
+		fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			body: `userid=${userid}&bookid=${bookid}`
+			
+		});
+	});
+}); 

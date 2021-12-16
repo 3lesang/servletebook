@@ -1,7 +1,7 @@
 @charset "UTF-8";
 body{
     
-    font-family: 'Montserrat';
+    font-family: 'Open Sans', sans-serif;
 }
 
 .container,.left-sidebar,.left-sidebar div,.box-container,.box,.box-row,.buttons-container{
@@ -108,7 +108,7 @@ a{
 .left-sidebar-links{
     letter-spacing: 2px;
     margin: 4px 0px 0px 10px;
-    font-family: 'Roboto';
+    
 }
 
 .box-container{
@@ -144,7 +144,6 @@ img{
 
 p{
     margin: 9px 0px 0px 20px;
-    font-family: 'Roboto';
 }
 
 .buttons-container{
@@ -158,7 +157,6 @@ p{
     background:linear-gradient(to left,rgb(76, 70, 253),rgb(64, 64, 250)) ;
     padding:4px 22px 4px 22px;
     border-radius: 4px;
-    font-family: 'Roboto';
     font-size: 15.7px;
     letter-spacing: 1px;
 }
@@ -181,7 +179,6 @@ input{
 }
 
 input::placeholder{
-    font-family: 'Roboto';
     padding: 0px 0px 0px 12px;
     letter-spacing: 1px;
     color:rgb(96, 96, 96);

@@ -1,0 +1,31 @@
+package com.mycompany.controller.user;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet(name = "follow", urlPatterns = {"/follow"})
+public class follow extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    public follow() {
+        super();
+        
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userid = request.getParameter("userid");
+		String bookid = request.getParameter("bookid");
+		System.out.println(userid);
+		System.out.println(bookid);
+	}
+
+}
