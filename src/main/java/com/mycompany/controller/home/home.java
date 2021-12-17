@@ -37,12 +37,17 @@ public class home extends HttpServlet {
     	String query = request.getParameter("b");
     	if(query == null) query = "";
     	
-    	System.out.println(query);
+
     	if(query.equals("followed")) {
     		User user = (User) request.getSession().getAttribute("userInfo");
-        	int userid = user.getId();
-    		UserDAO userDAO = new UserDAO();
-    		request.setAttribute("books", userDAO.getListBooksFollowed(userid));
+    		if(user == null) {
+    			request.setAttribute("books", null);
+    		} else {
+    			int userid = user.getId();
+        		UserDAO userDAO = new UserDAO();
+        		request.setAttribute("books", userDAO.getListBooksFollowed(userid));
+    		}
+        	
     	} else {
             this.books = this.bookDAO.getBooks(query);
             request.setAttribute("books", this.books);

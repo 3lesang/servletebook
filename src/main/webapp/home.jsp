@@ -52,12 +52,16 @@
           <li class="nav-sidebar-item"><a href="home?b=trending">thịnh hành </a></li>
           <li class="nav-sidebar-item"><a href="home?b=best">hay nhất</a></li>
           <li class="nav-sidebar-item"><a href="home?b=followed">theo dõi</a></li>
+          
         </ul>
         
       </div>
       <main class="content" >
       	<c:if test="${requestScope.books.size() == 0}"> 
                   <p>Not found book</p>
+        </c:if>
+        <c:if test="${requestScope.books == null}"> 
+                  <p>Login</p>
         </c:if>
           <c:forEach var="book" items="${requestScope.books}">
                 <div class="card">

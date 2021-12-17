@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class logout extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().removeAttribute("userInfo");
+        request.getSession().invalidate();
         response.sendRedirect("home");
     }
 }
