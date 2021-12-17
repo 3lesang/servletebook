@@ -34,7 +34,7 @@
 					  <div id="myDropdown" class="dropdown-content">
 					    <a href="dashboard">Quản lý</a>
 					    <a href="logout">Đăng xuất</a>
-					    <a href="admin">Admin</a>
+					    
 					  </div>
 					</div>
                 </c:otherwise>
@@ -71,8 +71,8 @@
                     </div>
                     <div class="card-footer">
                         <div class="user">
-                            <div class="avatar-cover"><img class="avatar-user" src="static/img/logo.png" alt="" /></div>
-                            <p class="user-name">${book.getAuthor()}</p>
+                            <div class="avatar-cover"><img class="avatar-user" src="img/${book.getUser().getAvatar()}" alt="user logo" /></div>
+                            <p class="user-name">${book.getUser().getUsername()}</p>
                         </div>
                         
                         <a href="" class="follow-btn" data-user="${sessionScope.userInfo.getUsername()}" data-book="${book.getId()}">&#x1F493;</a>                   

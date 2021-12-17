@@ -3,7 +3,20 @@ body{
     
     font-family: 'Open Sans', sans-serif;
 }
-
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+table, th, td {
+	padding: 16px;
+}
+td {
+	border-bottom: 1px solid #eee;
+	
+}
+td img {
+	width: 16px;
+}
 .container,.left-sidebar,.left-sidebar div,.box-container,.box,.box-row,.buttons-container{
     display: flex;
 }
@@ -49,7 +62,7 @@ body{
 }
 
 .left-sidebar{
-    box-shadow: .2px .2px 3px .2px rgb(157, 157, 157);
+    
     padding:0px 0px 0px 22px;
     height: 42.8rem;
     width: 12rem;
@@ -57,13 +70,15 @@ body{
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     background: linear-gradient(to left,white,transparent,white,transparent);
+    position: fixed;
+	left: 0;
 }
 
 .dashboard{
     border:2px solid transparent;
-    box-shadow: .2px .2px 1px .2px gray;
     height: 42.6rem;
     width: 80%;
+    margin-left: 10vw;
     border-bottom-right-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -92,7 +107,6 @@ body{
     width: 70%;
     padding:6px 12px 10px 31px;
     margin: -20px 0px 0px -7px;
-    box-shadow: .2px .2px 3px .2px rgb(218, 217, 217);
     background: linear-gradient(to left,white,transparent,white,transparent);
     border-radius: 2px;
 }
@@ -118,19 +132,12 @@ a{
 
 .box{
     width: 17.5rem;
-    height: 12rem;
+    
     border:1px solid whitesmoke;
-    box-shadow: .2px .2px 2px .2px lightgray;
+    border-radius: 4px;
     padding:22px 2px 2px 2px;
 }
 
-.line{
-    margin: 0px 0px 0px -3px;
-    width: 102%;
-    height: .2rem;
-    background:linear-gradient(to left,rgb(137, 133, 248),rgb(137, 137, 255)) ;
-    box-shadow: .2px .2px 3px .2px rgb(214, 214, 214);
-}
 
 .box-row{
     gap:20px;
@@ -138,7 +145,7 @@ a{
 
 img{
     padding:0px 2px 2px 22px;
-    width: 2.7rem;
+    width: 100%;
     height: auto;
 }
 
@@ -149,7 +156,7 @@ p{
 .buttons-container{
     justify-content: center;
     padding: 15px 0px 0px 0px;
-    gap:50px;
+    gap:24px;
 }
 
 .buttons{
@@ -171,9 +178,9 @@ p{
 input{
     width: 65%;
     height: 2rem;
-    box-shadow: .2px .2px 4px .2px rgb(226, 226, 226);
-    border:none;
-    padding:8px;
+    border:1px solid #eee;
+    border-radius: 4px;
+    padding:24px;
     margin:0px 0px 0px 30px;
     outline: none;
 }
@@ -213,4 +220,15 @@ input::placeholder{
     margin: 2px 0px 0px 10px;
     font-family: 'Roboto';
     letter-spacing: 1px;
+}
+
+
+.disable {
+	display: none;
+}
+.active{
+	display: block;
+}
+.flx{
+	display: flex;
 }

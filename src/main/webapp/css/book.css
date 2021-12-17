@@ -5,10 +5,8 @@
 }
 
 form {
-  width: 70%;
   height: 50%;
   display: flex;
-  justify-content: space-between;
 }
 
 h2 {

@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mycompany.dao.UserDAO;
+import com.mycompany.model.Book;
+import com.mycompany.model.User;
 
-@WebServlet(name = "deleteuser", urlPatterns = {"/user/delete"})
+@WebServlet(name = "deleteuser", urlPatterns = {"/dashboard/user/delete"})
 public class deleteuser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -20,8 +22,12 @@ public class deleteuser extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("u"));
+		
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("userid"));
 		boolean res = this.userDAO.deleteUser(id);
-		if(res) response.sendRedirect("/ebook/admin");	
 	}
 }

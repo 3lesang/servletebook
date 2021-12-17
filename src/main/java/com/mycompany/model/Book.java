@@ -4,10 +4,14 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,12 +23,14 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Table(name="books")
 public class Book implements Serializable {
 	@Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String title;
 	private String img;
 	private int views;
-    private String author;
+	@ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     private String detail;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -51,13 +57,21 @@ public class Book implements Serializable {
 	public Book() {
 		
 	}
-	public Book(int id, String title, String img, int views, String author, String detail) {
+	public Book(String title, String img, int views, User user, String detail) {
+		super();
+		this.title = title;
+		this.img = img;
+		this.views = views;
+        this.user = user;
+        this.detail = detail;
+	}
+	public Book(int id, String title, String img, int views, User user, String detail) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.img = img;
 		this.views = views;
-        this.author = author;
+        this.user = user;
         this.detail = detail;
 	}
 
@@ -90,12 +104,12 @@ public class Book implements Serializable {
 		this.views = views;
 	}
         
-    public String getAuthor() {
-            return author;
+    public User getUser() {
+            return user;
         }
 
-    public void setAuthor(String author) {
-            this.author = author;
+    public void setAuthor(User user) {
+            this.user = user;
         }
 	
     public void setImg(String img) {

@@ -49,10 +49,18 @@
 
                         <a href='home'><ion-icon name="Apps-outline"></ion-icon></a>
 
-                        <a class='left-sidebar-links' href='#'>Books</a>
+                        <a class='left-sidebar-links' href="" id="book-btn">Books</a>
 
                     </div>
+				  <c:if test="${sessionScope.userInfo.getRole() == 'admin'}"> 
+					<div>
 
+                        <a href='home'><ion-icon name="Apps-outline"></ion-icon></a>
+
+                        <a class='left-sidebar-links' href="" id="user-btn">Users</a>
+
+                    </div>
+				  </c:if>
 
 
                     <div>
@@ -87,42 +95,75 @@
 
                     </div>
 
-                    <h2>My Books</h2>
+                    <h2 class="disable" id="book-title">My Books</h2>
 
                     <br>
 
-                    <div class='box-container'>
-                     <c:forEach var="book" items="${books}">
-                 <div class='box'>
-
-                            <div class='box-row'>
-
-                      <a href="doc?q=${book.getId()}"><img src="${book.getImg() }" title="" /></a>
-                                <p>${book.getAuthor()}</p>
-
-                            </div>
-
-                            <br>
-
-                            <p>${book.getTitle()}</p>
-
-                            <br>
-
-                            <div class='line'></div>
-
-                            <div class='buttons-container'>
-
-                                <a href='book/delete?b=${book.getId()}' class='delete'>&#128465;</a>
-                                <a href='book/edit?b=${book.getId()}'>&#128295;</a>
-
-                            </div>
-
-                        </div>
-            </c:forEach>
+                    <div class='box-container disable' id="book-list">
+                    	<c:forEach var="book" items="${books}">
+				                 <div class='box'>
+				
+				                            <div class='box-row'>
+				
+				                      <a href="book/edit?b=${book.getId()}"><img src="${book.getImg() }" title="" /></a>
+				                                <p></p>
+				
+				                            </div>
+				
+				                            <br>
+				
+				                            <p>${book.getTitle()}</p>
+				
+				                            <br>
+				
+				                            <div class='buttons-container'>
+				
+				                                <a href='book/delete?b=${book.getId()}' class='delete-book'>&#128465;</a>
+				                                <a href='book/edit?b=${book.getId()}'>&#128295;</a>
+				
+				                            </div>
+				
+				                        </div>
+            			</c:forEach>
 
 
                     </div>
-
+                   
+                    <h2 id="user-title" class="disable">List Users</h2>
+	            <br>
+		        <div class="box-container disable" id="user-list">
+					<table>
+						
+							<thead>
+								<tr>
+									<th>ID</th>
+								    <th>FULLNAME</th>
+								    <th>USERNAME</th>
+								    <th>PASSWORD</th>
+								    <th>AVATAR</th>
+								    <th>ROLE</th>
+								    <th class="action">ACTION</th>
+								<tr>
+							</thead>
+							<tbody>
+								<c:forEach var="user" items="${users}">
+								<tr>
+									<td>${user.getId()}</td>
+		              				<td>${user.getFullname()}</td>
+		              				<td>${user.getUsername()}</td>
+		              				<td>${user.getPword()}</td>
+		              				<td><img src="img/${user.getAvatar()}"></td>
+		              				<td>${user.getRole()}</td>
+		              				<td>
+					              		<a href ="" class='delete-user' data-userid="${user.getId()}">&#128465;</a>
+					              	</td>
+				            	</tr>
+				            	</c:forEach>
+							</tbody>
+						
+					</table>
+				</div>				
+				
                 </div>
 
             </div>

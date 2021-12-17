@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../css/book.css">
-        <title>JSP Page</title>
+        <title>${book.getTitle()}</title>
     </head>
     <body>
         <section class="wrapper-form">
@@ -18,7 +18,7 @@
 	      <button>sửa</button>  
     	</div>
 	    <div class="right-form">
-	      <textarea name="detail" id="detail" rows="10" placeholder="chi tiết bài viết" required>${book.getDetail()}</textarea>
+	      <textarea name="detail" id="detail" placeholder="chi tiết bài viết" required>${book.getDetail()}</textarea>
 	    </div> 
   	</form>
   </c:if>
@@ -30,7 +30,7 @@
 	      <button>gửi</button>  
     	</div>
 	    <div class="right-form">
-	      <textarea name="detail" id="detail" rows="10" placeholder="chi tiết bài viết" required></textarea>
+	      <textarea name="detail" id="detail" placeholder="chi tiết bài viết" required></textarea>
 	    </div> 
   	</form>
   </c:if>

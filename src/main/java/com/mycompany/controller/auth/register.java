@@ -35,8 +35,9 @@ public class register extends HttpServlet {
         String name = request.getParameter("name");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        
         String repw = request.getParameter("repw");
-        User newUser = new User(name, username, password);
+        User newUser = new User(name, username, password,"useravatar.png", "user");
         
         if(password.equals(repw)) {
             if(this.userDAO.insertUser(newUser)){

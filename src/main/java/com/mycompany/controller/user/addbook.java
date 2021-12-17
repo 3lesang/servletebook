@@ -33,11 +33,7 @@ public class addbook extends HttpServlet {
 		String title = request.getParameter("title");
         String img = request.getParameter("img");
         String detail = request.getParameter("detail");
-        Book book = new Book();
-        book.setTitle(title);
-        book.setImg(img);
-        book.setDetail(detail);
-        book.setAuthor(user.getUsername());
+        Book book = new Book(title, img, 0, user, detail);
         boolean inserted = this.bookDAO.insertBook(book);
         if(inserted) {
             response.sendRedirect("/ebook/dashboard");

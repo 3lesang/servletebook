@@ -1,6 +1,7 @@
-package com.mycompany.controller.user;
+package com.mycompany.controller.home;
 
 import com.mycompany.dao.BookDAO;
+import com.mycompany.dao.UserDAO;
 import com.mycompany.model.Book;
 import com.mycompany.model.User;
 
@@ -19,18 +20,29 @@ import javax.servlet.http.HttpServletResponse;
 public class dashboard extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private List<Book> books;
-    private BookDAO bookDAO;
+
     public dashboard() {
         super();
-        this.bookDAO = new BookDAO();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) request.getSession().getAttribute("userInfo");
-    	this.books = this.bookDAO.getBooksByAuthor(user.getUsername());
-        request.setAttribute("books", this.books);
+    	User user = (User) request.getSession().getAttribute("userInfo");
+    	String role = user.getRole();
+    	int id = user.getId();
+    	BookDAO bookDAO = new BookDAO();
+    	List<Book> books;
+    	if(role.equals("admin")) {
+    		UserDAO userDAO = new UserDAO();		
+    		List<User> users = userDAO.getAllUsers();
+    		books = bookDAO.getAllBooks();
+    		request.setAttribute("users", users);
+            
+    	} else {
+    		books = bookDAO.getBooksByAuthor(id);
+    	}
+    	request.setAttribute("books", books);
+
         RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
         rd.forward(request, response);
     }

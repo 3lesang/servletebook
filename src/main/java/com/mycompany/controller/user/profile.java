@@ -25,7 +25,7 @@ public class profile extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("u");
-		this.user = this.userDAO.getUserById(username);
+		this.user = this.userDAO.getUserByUsername(username);
         request.setAttribute("user", this.user);
         RequestDispatcher rd = request.getRequestDispatcher("/profile.jsp");  
         rd.forward(request, response);

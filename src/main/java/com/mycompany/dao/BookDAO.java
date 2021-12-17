@@ -1,6 +1,7 @@
 package com.mycompany.dao;
 
 import com.mycompany.model.Book;
+import com.mycompany.model.User;
 import com.mycompany.util.HibernateUtil;
 import java.util.List;
 import javax.persistence.Query;
@@ -63,18 +64,16 @@ public class BookDAO {
         return null;
     }
 
-    public List<Book> getBooksByAuthor(String author){
+    public List<Book> getBooksByAuthor(int id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            Query q = session.createQuery("FROM Book b Where b.author=:author");
-            q.setParameter("author", author);
-            List<Book> books = q.getResultList();
-            return books;
+            User u = session.get(User.class, id);
+            return u.getBooks();
 
         } catch (Exception e) {
             System.out.println(e);
         } finally{
-            session.close();
+//            session.close();
         }
         return null;
     }
@@ -167,4 +166,9 @@ public class BookDAO {
         }  
         return false;
     }
+//    public static void main(String[] args ) {
+//    	Session session = HibernateUtil.getSessionFactory().openSession();
+//    	User u = session.get(User.class, 1);
+//    	u.getBooks().indexOf(1);
+//    }
 }

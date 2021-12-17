@@ -1,11 +1,17 @@
 package com.mycompany.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="users")
@@ -18,14 +24,19 @@ public class User implements Serializable {
 	private String pword;
 	private String avatar;
     private String role;
+    @OneToMany(mappedBy = "user")
+    private List<Book> books;
         
+
 	public User() {
             super();
 	}
-    public User(String fullname, String username, String pword) {
+    public User(String fullname, String username, String pword, String avatar, String role) {
         this.fullname = fullname;
         this.username = username;
         this.pword = pword;
+        this.avatar = avatar;
+        this.role = role;
     }
 
 	public void setId(int id) {
@@ -74,5 +85,11 @@ public class User implements Serializable {
 
 	public void setRole(String role) {
 		this.avatar = role;
+	}
+	public List<Book> getBooks() {
+		return books;
+	}
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 }
