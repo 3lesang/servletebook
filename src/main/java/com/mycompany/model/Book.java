@@ -3,6 +3,7 @@ package com.mycompany.model;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,7 +33,7 @@ public class Book implements Serializable {
 	private int views;
 	@ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User owner;
     private String detail;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -38,6 +41,14 @@ public class Book implements Serializable {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated_at;
+    @ManyToMany
+    @JoinTable(
+    		name = "follow",
+    		joinColumns = { @JoinColumn(name = "bookID")},
+    		inverseJoinColumns = {@JoinColumn(name = "userID")}
+    )
+    private Set<User> followers;
+
 
 
 	public String getCreated_at() {
@@ -57,21 +68,21 @@ public class Book implements Serializable {
 	public Book() {
 		
 	}
-	public Book(String title, String img, int views, User user, String detail) {
+	public Book(String title, String img, int views, User owner, String detail) {
 		super();
 		this.title = title;
 		this.img = img;
 		this.views = views;
-        this.user = user;
+        this.owner = owner;
         this.detail = detail;
 	}
-	public Book(int id, String title, String img, int views, User user, String detail) {
+	public Book(int id, String title, String img, int views, User owner, String detail) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.img = img;
 		this.views = views;
-        this.user = user;
+        this.owner = owner;
         this.detail = detail;
 	}
 
@@ -104,12 +115,12 @@ public class Book implements Serializable {
 		this.views = views;
 	}
         
-    public User getUser() {
-            return user;
+    public User getOwner() {
+            return owner;
         }
 
-    public void setAuthor(User user) {
-            this.user = user;
+    public void setOwner(User user) {
+            this.owner = user;
         }
 	
     public void setImg(String img) {
@@ -127,4 +138,12 @@ public class Book implements Serializable {
     public String getDetail() {
             return detail;
         }
+    
+	public Set<User> getFollowers() {
+		return followers;
+	}
+	
+	public void setFollowers(Set<User> followers) {
+		this.followers = followers;
+	}
 }

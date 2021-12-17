@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,9 +26,11 @@ public class User implements Serializable {
 	private String pword;
 	private String avatar;
     private String role;
-    @OneToMany(mappedBy = "user")
-    private List<Book> books;
-        
+    @OneToMany(mappedBy = "owner")
+    private List<Book> ownBooks;
+    @ManyToMany(mappedBy="followers")
+	private Set<Book> listBooksFollowed;
+
 
 	public User() {
             super();
@@ -86,10 +90,16 @@ public class User implements Serializable {
 	public void setRole(String role) {
 		this.avatar = role;
 	}
-	public List<Book> getBooks() {
-		return books;
+    public List<Book> getOwnBooks() {
+		return ownBooks;
 	}
-	public void setBooks(List<Book> books) {
-		this.books = books;
+	public void setOwnBooks(List<Book> ownBooks) {
+		this.ownBooks = ownBooks;
+	}
+	public Set<Book> getListBooksFollowed() {
+		return listBooksFollowed;
+	}
+	public void setListBooksFollowed(Set<Book> listBooksFollowed) {
+		this.listBooksFollowed = listBooksFollowed;
 	}
 }

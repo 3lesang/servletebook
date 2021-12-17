@@ -3,7 +3,11 @@ package com.mycompany.dao;
 import com.mycompany.model.Book;
 import com.mycompany.model.User;
 import com.mycompany.util.HibernateUtil;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -68,7 +72,7 @@ public class BookDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             User u = session.get(User.class, id);
-            return u.getBooks();
+            return u.getOwnBooks();
 
         } catch (Exception e) {
             System.out.println(e);
@@ -166,9 +170,41 @@ public class BookDAO {
         }  
         return false;
     }
-//    public static void main(String[] args ) {
-//    	Session session = HibernateUtil.getSessionFactory().openSession();
+    public void follow(int userid, int bookid) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try {
+        	Book book = session.get(Book.class, bookid);
+        	Set<User> followers = new HashSet<>();
+        	followers.add(session.get(User.class, userid));
+        	book.setFollowers(followers);
+        	session.getTransaction().begin();
+        	session.save(book);
+        	session.getTransaction().commit();
+
+        } catch (Exception e) {
+                System.out.println(e);
+        } finally{
+                session.close();
+        }
+      
+    }
+    public static void main(String[] args ) {
+    	
+    	
+    	Session session = HibernateUtil.getSessionFactory().openSession();
+//    	Book book = session.get(Book.class, 90);
+//    	Set<User> followers = new HashSet<>();
+//    	followers.add(session.get(User.class, 1));
+//    	followers.add(session.get(User.class, 2));
+//    	book.setFollowers(followers);
+//    	session.getTransaction().begin();
+//    	session.save(book);
+//    	session.getTransaction().commit();
 //    	User u = session.get(User.class, 1);
-//    	u.getBooks().indexOf(1);
-//    }
+//    	u.getListBooksFollowed().forEach(e -> {
+//    		System.out.println(e.getTitle());
+//    	});
+    	
+    }
 }

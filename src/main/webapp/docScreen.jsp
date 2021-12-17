@@ -15,7 +15,7 @@
         
     <artical>
         <h2>${book.getTitle()}</h2>
-        <p class="user-name">&#129489; ${book.getUser().getUsername()}</p>
+        <p class="user-name">&#129489; ${book.getOwner().getUsername()}</p>
         <img class="card-img-top" alt="img" src="${book.getImg()}"/>
         
         <p>${book.getDetail()}</p>

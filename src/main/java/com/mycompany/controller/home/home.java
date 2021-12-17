@@ -1,7 +1,10 @@
 package com.mycompany.controller.home;
 
 import com.mycompany.dao.BookDAO;
+import com.mycompany.dao.UserDAO;
 import com.mycompany.model.Book;
+import com.mycompany.model.User;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -35,10 +38,19 @@ public class home extends HttpServlet {
     	if(query == null) query = "";
     	
     	System.out.println(query);
-        this.books = this.bookDAO.getBooks(query);
-        request.setAttribute("books", this.books);
-        RequestDispatcher rd = request.getRequestDispatcher("/home.jsp");  
+    	if(query.equals("followed")) {
+    		User user = (User) request.getSession().getAttribute("userInfo");
+        	int userid = user.getId();
+    		UserDAO userDAO = new UserDAO();
+    		request.setAttribute("books", userDAO.getListBooksFollowed(userid));
+    	} else {
+            this.books = this.bookDAO.getBooks(query);
+            request.setAttribute("books", this.books);
+            
+    	}
+    	RequestDispatcher rd = request.getRequestDispatcher("/home.jsp");  
         rd.forward(request, response);
+
     }
 
     @Override

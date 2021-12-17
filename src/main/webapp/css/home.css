@@ -56,7 +56,8 @@ a:active {
 	grid-area: header;
 	background-color: #fff;
 	padding: 16px 10px;
-	box-shadow: 1px 0 1px #000;
+	box-shadow: 1px 0 1px #ccc;
+	z-index: 2;
 }
 .header-right{
 	float: right;
@@ -215,7 +216,10 @@ a:active {
 	cursor: pointer;
 	margin: 0 4px;
 }
-
+.follow-btn {
+	opacity: 0.5;
+	font-size: 1.6rem;
+}
 
 
  /* Dropdown Button */

@@ -10,12 +10,12 @@ Array.from(books).forEach((book) => {
 if(users != null) {
 	Array.from(users).forEach((user) => {
 		const userid = user.dataset.userid;
-		user.onclick = async function(e) {
+		user.onclick = (e) => {
 			if(confirm("you want to delete?")) {
 				e.preventDefault();
 				const url = `${document.location}/user/delete`;
 				console.log(url);
-				const resp = await fetch(url, {
+				fetch(url, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/x-www-form-urlencoded',

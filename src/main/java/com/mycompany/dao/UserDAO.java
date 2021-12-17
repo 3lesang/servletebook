@@ -3,7 +3,11 @@ package com.mycompany.dao;
 import com.mycompany.model.Book;
 import com.mycompany.model.User;
 import com.mycompany.util.HibernateUtil;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -55,7 +59,20 @@ public class UserDAO {
         }
         return user;
     }
-    
+    public Set<Book> getListBooksFollowed(int userid) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+        	User u = session.get(User.class, userid);
+        	return u.getListBooksFollowed();
+
+        } catch (Exception e) {
+                System.out.println(e);
+        } finally{
+//                session.close();
+        }
+        return null;
+       
+    }
     public boolean insertUser(User newUser) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -111,4 +128,5 @@ public class UserDAO {
         }
         return user;
     }
+    
 }

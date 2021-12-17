@@ -19,9 +19,15 @@ window.onclick = function(event) {
 Array.from(followBtn).forEach((item) => {
 	const userid = item.dataset.user;
 	const bookid = item.dataset.book;
+
 	item.addEventListener('click', (e) => {
 		e.preventDefault();
-		
+		if(!userid) {
+			location.href = `${location.origin}/ebook/login`;
+			return;
+			
+		}
+		item.style.opacity = '1';
 		const url = document.location + `/follow`;
 		fetch(url, {
 			method: 'POST',

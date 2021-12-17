@@ -51,7 +51,7 @@
           <li class="nav-sidebar-item"><a href="home?b=new">mới nhất </a></li>
           <li class="nav-sidebar-item"><a href="home?b=trending">thịnh hành </a></li>
           <li class="nav-sidebar-item"><a href="home?b=best">hay nhất</a></li>
-          <li class="nav-sidebar-item"><a href="home?b=best">theo dõi</a></li>
+          <li class="nav-sidebar-item"><a href="home?b=followed">theo dõi</a></li>
         </ul>
         
       </div>
@@ -71,11 +71,11 @@
                     </div>
                     <div class="card-footer">
                         <div class="user">
-                            <div class="avatar-cover"><img class="avatar-user" src="img/${book.getUser().getAvatar()}" alt="user logo" /></div>
-                            <p class="user-name">${book.getUser().getUsername()}</p>
+                            <div class="avatar-cover"><img class="avatar-user" src="img/${book.getOwner().getAvatar()}" alt="user logo" /></div>
+                            <p class="user-name">${book.getOwner().getUsername()}</p>
                         </div>
                         
-                        <a href="" class="follow-btn" data-user="${sessionScope.userInfo.getUsername()}" data-book="${book.getId()}">&#x1F493;</a>                   
+                        <a href="" class="follow-btn" data-user="${sessionScope.userInfo.getId()}" data-book="${book.getId()}">&#x1F493;</a>                   
                     </div>
                 </div>
           </c:forEach>

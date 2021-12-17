@@ -16,8 +16,8 @@ a{
 
 artical {
     display: block;
-    width: 40vw;
-    padding: 8px;
+    width: 50%;
+    padding: 32px 0;
     margin: 0 auto;
 }
 artical p {
@@ -36,5 +36,7 @@ artical img {
 	object-fit: cover;
 }
 @media screen and (max-width: 500px) {
-	
+	artical {
+		width: 80%;
+	}
 }
