@@ -95,11 +95,11 @@
 
                     </div>
 
-                    <h2 class="disable" id="book-title">My Books</h2>
+                    <h2 class="" id="book-title">My Books</h2>
 
                     <br>
 
-                    <div class='box-container disable' id="book-list">
+                    <div class='box-container' id="book-list">
                     	<c:forEach var="book" items="${books}">
 				                 <div class='box'>
 				
@@ -111,14 +111,17 @@
 				                            </div>
 				
 				                            <br>
-				
+											<p>${book.getOwner().getUsername()}</p>
 				                            <p>${book.getTitle()}</p>
 				
 				                            <br>
 				
 				                            <div class='buttons-container'>
-				
-				                                <a href='book/delete?b=${book.getId()}' class='delete-book'>&#128465;</a>
+				                            	
+												
+												<a href='book/delete?b=${book.getId()}' class='delete-book'>&#128465;</a>
+				  								
+				                                
 				                                <a href='book/edit?b=${book.getId()}'>&#128295;</a>
 				
 				                            </div>
@@ -155,7 +158,10 @@
 		              				<td><img src="img/${user.getAvatar()}"></td>
 		              				<td>${user.getRole()}</td>
 		              				<td>
-					              		<a href ="" class='delete-user' data-userid="${user.getId()}">&#128465;</a>
+		              					<c:if test="${user.getRole() == 'user'}">
+											<a href ="" class='delete-user' data-userid="${user.getId()}">&#128465;</a>
+				  						</c:if>
+					              		
 					              	</td>
 				            	</tr>
 				            	</c:forEach>

@@ -40,7 +40,10 @@ public class login extends HttpServlet {
             response.sendRedirect("home");
             
         } else {
-            response.sendRedirect("login");
+        	request.setAttribute("mess", "Không thể đăng nhập");
+
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
         }
         
 

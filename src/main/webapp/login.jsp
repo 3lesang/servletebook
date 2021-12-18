@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +14,9 @@
     <title>đăng nhập</title>
 </head>
 <body>
+	<c:if test="${mess != null}"> 
+            <p style="color: red; padding: 8px">${mess}</p>
+    </c:if>
     <form action="login" method="post" class="form">
     	<a href="home"><h2>book</h2></a>
         <div class="form-group">

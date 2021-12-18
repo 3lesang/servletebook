@@ -37,15 +37,15 @@ const userTitle = document.querySelector("#user-title");
 const userList = document.querySelector("#user-list");
 bookBtn.addEventListener('click', (e) => {
 	e.preventDefault();
+	bookTitle.classList.remove('disable');
+	bookList.classList.remove('disable');
 	userTitle.classList.remove('active');
 	userList.classList.remove('active');
-	bookTitle.classList.add('active');
-	bookList.classList.add('flx');
 });
 userBtn.addEventListener('click', (e) => {
 	e.preventDefault();
-	bookTitle.classList.remove('active');
-	bookList.classList.remove('flx');
+	bookTitle.classList.add('disable');
+	bookList.classList.add('disable');
 	userTitle.classList.add('active');
 	userList.classList.add('active');
 });

@@ -2,30 +2,36 @@ package com.mycompany.model;
 
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 
 @Entity
-@Table(name="categorys")
+@Table(name="categories")
 public class Category implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String catename;
+	private String name;
+	@OneToMany(mappedBy="category")
+	private List<Book> books;
+	
 
 	public Category() {
 		
 	}
 
-	public Category(int id, String catename) {
+	public Category(int id, String name) {
 		super();
 		this.id = id;
-		this.catename = catename;
+		this.name = name;
 	}
 
 	public int getId() {
@@ -36,12 +42,20 @@ public class Category implements Serializable {
 		this.id = id;
 	}
 
-	public String getCatename() {
-		return catename;
+	public String getName() {
+		return name;
 	}
 
-	public void setCatename(String catename) {
-		this.catename = catename;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 
 }

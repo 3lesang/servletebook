@@ -37,7 +37,7 @@ public class home extends HttpServlet {
     	String query = request.getParameter("b");
     	if(query == null) query = "";
     	
-
+    	
     	if(query.equals("followed")) {
     		User user = (User) request.getSession().getAttribute("userInfo");
     		if(user == null) {
@@ -51,6 +51,7 @@ public class home extends HttpServlet {
     	} else {
             this.books = this.bookDAO.getBooks(query);
             request.setAttribute("books", this.books);
+            request.setAttribute("category", true);
             
     	}
     	RequestDispatcher rd = request.getRequestDispatcher("/home.jsp");  

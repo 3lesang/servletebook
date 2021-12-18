@@ -24,7 +24,7 @@ li {
 }
 a {
 	text-decoration: none;
-        corlor: #000;
+    color: #000;
 }
 
 a:link {
@@ -118,6 +118,7 @@ a:active {
 .bg {
 	background-color: #fff;
 }
+
 .content {
 	display: flex;
 	flex-wrap: wrap;
@@ -127,6 +128,18 @@ a:active {
 	justify-self: start;
 	padding-top: 8px;
 	height: 90vh;
+}
+
+.category {
+    width: 100%;
+}
+.content .category a {
+    border: 1px solid #eee;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin: 8px;
+    background-color: #eee;
+    cursor: pointer;
 }
 
 .card {

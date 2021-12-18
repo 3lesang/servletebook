@@ -43,10 +43,16 @@ public class register extends HttpServlet {
             if(this.userDAO.insertUser(newUser)){
                 response.sendRedirect("login");
             } else {
-                response.sendRedirect("register");
+            	request.setAttribute("mess", "Không thể tạo tài khoản");
+
+                RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                rd.forward(request, response);
             }
         } else {
-            response.sendRedirect("register");
+            request.setAttribute("mess", "Mật khẩu nhập lại không hợp lệ");
+
+            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+            rd.forward(request, response);
         }	
     }
 }

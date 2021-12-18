@@ -2,6 +2,7 @@
 package com.mycompany.util;
 
 import com.mycompany.model.Book;
+import com.mycompany.model.Category;
 import com.mycompany.model.User;
 import java.util.Properties;
 
@@ -29,6 +30,7 @@ public class HibernateUtil {
         configuration.setProperties(settings);
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Book.class);
+        configuration.addAnnotatedClass(Category.class);
 
 	ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();

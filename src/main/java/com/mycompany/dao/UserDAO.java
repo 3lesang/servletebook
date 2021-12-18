@@ -128,5 +128,25 @@ public class UserDAO {
         }
         return user;
     }
+    public boolean changePass(String username, String newPass) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        Transaction tx = null;
+        try {
+        	
+            Query q = session.createQuery("UPDATE User u SET u.pword=:pw Where u.username=:username");
+            tx = session.beginTransaction();
+            q.setParameter("username", username);
+            q.setParameter("pw", newPass);
+            q.executeUpdate();
+            tx.commit();
+            return true;
+        } catch(Exception e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }  
+        return false;
+    }
     
 }

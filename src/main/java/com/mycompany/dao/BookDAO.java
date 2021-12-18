@@ -1,6 +1,7 @@
 package com.mycompany.dao;
 
 import com.mycompany.model.Book;
+import com.mycompany.model.Category;
 import com.mycompany.model.User;
 import com.mycompany.util.HibernateUtil;
 
@@ -205,6 +206,22 @@ public class BookDAO {
 //    	u.getListBooksFollowed().forEach(e -> {
 //    		System.out.println(e.getTitle());
 //    	});
-    	
+
+//    	User entity = (User) session.get(User.class, 1);
+//    	Book book = session.get(Book.class, 90);
+//    	book.getFollowers().remove(entity);
+//    	session.getTransaction().begin();
+//    	session.save(book);
+//    	session.getTransaction().commit();
+//    	Book book = session.get(Book.class, 90);
+//    	User entity = (User) session.get(User.class, 2);
+//    	if(book.getFollowers().contains(entity)) {
+//    		System.out.println("hello");
+//    	}
+
+//    	Category c = session.get(Category.class, 10);
+//    	c.getBooks().forEach(e -> {
+//    		System.out.println(e.getTitle());
+//    	});
     }
 }

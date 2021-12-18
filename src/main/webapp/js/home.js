@@ -28,7 +28,7 @@ Array.from(followBtn).forEach((item) => {
 			
 		}
 		item.style.opacity = '1';
-		const url = document.location + `/follow`;
+		const url = `${location.origin}/ebook/home/follow`;
 		fetch(url, {
 			method: 'POST',
 			headers: {

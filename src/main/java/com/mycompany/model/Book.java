@@ -5,8 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -48,23 +48,11 @@ public class Book implements Serializable {
     		inverseJoinColumns = {@JoinColumn(name = "userID")}
     )
     private Set<User> followers;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="category_id")
+    private Category category;
 
-
-
-	public String getCreated_at() {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String strDate = formatter.format(created_at);
-			return strDate;
-		}
-		public void setCreated_at(Date created_at) {
-			this.created_at = created_at;
-		}
-		public Date getUpdated_at() {
-			return updated_at;
-		}
-		public void setUpdated_at(Date updated_at) {
-			this.updated_at = updated_at;
-		}
+	
 	public Book() {
 		
 	}
@@ -133,17 +121,40 @@ public class Book implements Serializable {
 
     public String getImg() {
             return img;
-        }
+    }
 
     public String getDetail() {
             return detail;
-        }
+    }
+    public String getCreated_at() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = formatter.format(created_at);
+			return strDate;
+	}
     
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
+	}
+	
+	public Date getUpdated_at() {
+		return updated_at;
+	}
+	
+	public void setUpdated_at(Date updated_at) {
+		this.updated_at = updated_at;
+	}
+	
 	public Set<User> getFollowers() {
 		return followers;
 	}
 	
 	public void setFollowers(Set<User> followers) {
 		this.followers = followers;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 }

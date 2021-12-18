@@ -15,9 +15,9 @@
 <body>
 <div class="settings-page">
   <div class="settings-container">
-    <h1 class="page-title">Account</h1>
+    <h1 class="page-title">Tài khoản</h1>
     <div class="settings-section">
-      <h2 class="settings-title">General Information</h2>
+      <h2 class="settings-title">Thông tin</h2>
         <div class="non-active-form">
           <p>${user.getFullname()}</p><i class="fas fa-pen"></i>
         </div>
@@ -39,26 +39,30 @@
 </div>
 <c:if test="${sessionScope.userInfo.getUsername() == user.getUsername()}"> 
                   <div class="settings-section">
-	  <h2 class="settings-title">My profile</h2>
+	  <h2 class="settings-title"></h2>
 	  <form class="form my-form">
 	    <div class="img-upload-container">
 	      <label class="img-upload btn btn-bwm">
 	        <input type="file" value="">
 	      </label>
-	      <h4>Change Your Profile Picture</h4>
+	      <h4>Thay đổi hình đại diện</h4>
 	      <div class="img-preview-container">
 	        <div class="img-preview">
 	        </div>
 	      </div>
 	    </div>
 	    <div class="form-submit">
-	      <button class="btn button full" type="submit" disabled="">Save New Picture</button>
+	      <button class="btn button full" type="submit" disabled="">Lưu thay đổi</button>
 	    </div>
 	  </form>
 	</div>
 	<div class="settings-section">
-	  <h2 class="settings-title">Password</h2>
-	  <form class="form my-form">
+	  <h2 class="settings-title">Mật khẩu</h2>
+	  <c:if test="${messChangePass != null}"> 
+            <p style="color: red; padding: 8px">${messChangePass}</p>
+    	</c:if>
+	  
+	  <form class="form my-form" action="profile" method="post">
 	    <div class="form-group">
 	      <div class="input-group">
 	        <input name="currentPassword" placeholder="Old Password" type="password" class="form-control" autocomplete="Old Password" value="">
@@ -72,7 +76,7 @@
 	      </div>
 	    </div>
 	   <div class="form-submit right">
-	     <button class="btn button full" type="submit" disabled="">Change Password</button>
+	     <button class="btn button full" type="submit">Thay đổi mật khẩu</button>
 	    </div>
 	  </form>
 	</div>
@@ -80,5 +84,6 @@
 	
 </div>
 </div>
+<script src="js/profile.js"></script>
 </body>
 </html>

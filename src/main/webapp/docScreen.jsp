@@ -13,15 +13,15 @@
   </head>
   <body class="scrollbar" id="view">
         
-    <artical>
+    <artical id="post">
         <h2>${book.getTitle()}</h2>
-        <p class="user-name">&#129489; ${book.getOwner().getUsername()}</p>
+        <p class="user-name">&#129489; ${book.getOwner().getUsername()} ${book.getCreated_at()}</p>
         <img class="card-img-top" alt="img" src="${book.getImg()}"/>
         
         <p>${book.getDetail()}</p>
         <a href="home">back to home</a>
     </artical>
-  
+  	<a href="#post">top</a>
     
       
   </body>

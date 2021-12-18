@@ -57,11 +57,19 @@
         
       </div>
       <main class="content" >
+      <%-- <c:if test="${category}"> 
+	            <div class="category">
+		      		<a>Văn hóa</a>
+		      		<a>Lịch sử</a>
+		      		<a>Khác</a>
+	    		</div>
+	        </c:if>--%>
+	      	
       	<c:if test="${requestScope.books.size() == 0}"> 
                   <p>Not found book</p>
         </c:if>
         <c:if test="${requestScope.books == null}"> 
-                  <p>Login</p>
+                  <a href="login">Login</a>
         </c:if>
           <c:forEach var="book" items="${requestScope.books}">
                 <div class="card">
@@ -79,7 +87,8 @@
                             <p class="user-name">${book.getOwner().getUsername()}</p>
                         </div>
                         
-                        <a href="" class="follow-btn" data-user="${sessionScope.userInfo.getId()}" data-book="${book.getId()}">&#x1F493;</a>                   
+        				<a href="" class="follow-btn" data-user="${sessionScope.userInfo.getId()}" data-book="${book.getId()}">&#x1F493;</a>
+                                           
                     </div>
                 </div>
           </c:forEach>
